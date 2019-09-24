@@ -63,7 +63,7 @@ export default (state, action) => {
         ...state,
         filtered: state.devices.filter(device => {
           const regex = new RegExp(`${action.payload}`, 'gi');
-          return device.name.match(regex) || device.email.match(regex);
+          return device.name.match(regex) || device.serialNumber.match(regex);
         }),
       };
     case CLEAR_FILTER:
