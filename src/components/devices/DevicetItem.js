@@ -6,7 +6,7 @@ const DeviceItem = ({ device }) => {
   const deviceContext = useContext(DeviceContext);
   const { deleteDevice, setCurrent, clearCurrent } = deviceContext;
 
-  const { _id, name, email, phone, type } = device;
+  const { _id, serialNumber, name, macAddress, isDisabled, type } = device;
 
   // Let's pull out the delete action from our context
 
@@ -15,31 +15,38 @@ const DeviceItem = ({ device }) => {
     clearCurrent();
   };
 
+  const onToggle = () => {
+    console.log('Toggle fired on ', serialNumber);
+  };
+
   return (
     <div className='card bg-light'>
       <h3 className='text-primary text-left'>
         {name}{' '}
         <span
           style={{ float: 'right' }}
-          className={
-            'badge ' +
-            (type === 'professional' ? 'badge-success' : 'badge-primary')
-          }
+          className={'badge ' + (isDisabled ? 'badge-danger' : 'badge-success')}
         >
-          {type.charAt(0).toUpperCase() + type.slice(1)}
+          {isDisabled ? 'Disabled' : 'Enabled'}
         </span>
       </h3>
       <ul className='list'>
-        {email && (
+        {serialNumber && (
           <li>
-            <i className='fas fa-envelope-open' />
-            {email}
+            <i className='fas fa-tag' />
+            {serialNumber}
           </li>
         )}
-        {phone && (
+        {type && (
           <li>
-            <i className='fas fa-phone' />
-            {phone}
+            <i className='fas fa-asterisk' />
+            {type}
+          </li>
+        )}
+        {macAddress && (
+          <li>
+            <i className='fas fa-podcast' />
+            {macAddress}
           </li>
         )}
       </ul>
@@ -52,6 +59,9 @@ const DeviceItem = ({ device }) => {
         </button>
         <button className='btn btn-danger btn-sm' onClick={onDelete}>
           Delete
+        </button>
+        <button className='btn btn-primary btn-sm' onClick={onToggle}>
+          Toggle
         </button>
       </p>
     </div>

@@ -70,16 +70,16 @@ const DeviceForm = () => {
       </h2>
       <input
         type='text'
-        placeholder='Serial Number'
-        name='serialNumber'
-        value={serialNumber}
+        placeholder='Name'
+        name='name'
+        value={name}
         onChange={onChange}
       />
       <input
         type='text'
-        placeholder='Name'
-        name='name'
-        value={name}
+        placeholder='Serial Number'
+        name='serialNumber'
+        value={serialNumber}
         onChange={onChange}
       />
       <input
