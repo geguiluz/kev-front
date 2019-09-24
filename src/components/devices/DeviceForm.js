@@ -16,22 +16,24 @@ const DeviceForm = () => {
     } else {
       // Else, just set it to its default state
       setDevice({
+        serialNumber: '',
         name: '',
-        email: '',
-        phone: '',
-        type: 'personal',
+        macAddress: '',
+        isDisabled: false,
+        type: '',
       });
     }
   }, [deviceContext, current]);
 
   const [device, setDevice] = useState({
+    serialNumber: '',
     name: '',
-    email: '',
-    phone: '',
-    type: 'personal',
+    macAddress: '',
+    isDisabled: false,
+    type: '',
   });
 
-  const { name, email, phone, type } = device;
+  const { serialNumber, name, macAddress, isDisabled, type } = device;
 
   // We want to put whatever we type into each of the fields onto the state
   const onChange = e =>
@@ -49,10 +51,11 @@ const DeviceForm = () => {
     }
     //Setting everything back to default after submission
     setDevice({
+      serialNumber: '',
       name: '',
-      email: '',
-      phone: '',
-      type: 'personal',
+      macAddress: '',
+      isDisabled: false,
+      type: '',
     });
   };
 
@@ -67,42 +70,40 @@ const DeviceForm = () => {
       </h2>
       <input
         type='text'
+        placeholder='Serial Number'
+        name='serialNumber'
+        value={serialNumber}
+        onChange={onChange}
+      />
+      <input
+        type='text'
         placeholder='Name'
         name='name'
         value={name}
         onChange={onChange}
       />
       <input
-        type='email'
-        placeholder='Email'
-        name='email'
-        value={email}
+        type='text'
+        placeholder='Device Type'
+        name='type'
+        value={type}
         onChange={onChange}
       />
       <input
         type='text'
-        placeholder='Phone'
-        name='phone'
-        value={phone}
+        placeholder='MAC Address'
+        name='macAddress'
+        value={macAddress}
         onChange={onChange}
       />
       <h5>Device Type</h5>
+      Disable Device?{' '}
       <input
-        type='radio'
-        name='type'
-        value='personal'
-        checked={type === 'personal'}
+        type='checkbox'
+        name='isDisabled'
+        value={isDisabled}
         onChange={onChange}
-      />{' '}
-      Personal{' '}
-      <input
-        type='radio'
-        name='type'
-        value='professional'
-        checked={type === 'professional'}
-        onChange={onChange}
-      />{' '}
-      Professional{' '}
+      />
       <div>
         <input
           type='submit'
