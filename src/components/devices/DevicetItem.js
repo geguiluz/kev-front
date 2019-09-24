@@ -4,7 +4,12 @@ import DeviceContext from '../../context/device/deviceContext';
 
 const DeviceItem = ({ device }) => {
   const deviceContext = useContext(DeviceContext);
-  const { deleteDevice, setCurrent, clearCurrent } = deviceContext;
+  const {
+    deleteDevice,
+    setCurrent,
+    clearCurrent,
+    toggleDevice,
+  } = deviceContext;
 
   const { _id, serialNumber, name, macAddress, isDisabled, type } = device;
 
@@ -17,6 +22,7 @@ const DeviceItem = ({ device }) => {
 
   const onToggle = () => {
     console.log('Toggle fired on ', serialNumber);
+    toggleDevice(serialNumber);
   };
 
   return (

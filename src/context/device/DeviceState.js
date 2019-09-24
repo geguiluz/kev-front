@@ -13,6 +13,7 @@ import {
   CLEAR_CURRENT,
   CLEAR_FILTER,
   FILTER_DEVICE,
+  TOGGLE_DEVICE,
 } from '../types';
 
 const DeviceState = props => {
@@ -114,6 +115,32 @@ const DeviceState = props => {
     }
   };
 
+  // Toggle device
+  const toggleDevice = async serialNumber => {
+    const config = {
+      headers: {
+        'Content-type': 'application/json',
+      },
+    };
+    try {
+      const res = await axios.patch(
+        `${process.env.REACT_APP_API_URL}/api/deviceController/toggleDevice`,
+        { serialNumber },
+        config
+      );
+      dispatch({
+        type: TOGGLE_DEVICE,
+        payload: res.data,
+      });
+    } catch (err) {
+      dispatch({
+        type: DEVICE_ERROR,
+        payload: err.response.msg,
+      });
+    }
+    dispatch({ type: CLEAR_DEVICES });
+  };
+
   // Clear Current device
   const clearDevices = () => {
     dispatch({ type: CLEAR_DEVICES });
@@ -158,6 +185,7 @@ const DeviceState = props => {
         filterDevices,
         clearFilter,
         clearDevices,
+        toggleDevice,
       }}
     >
       {props.children}

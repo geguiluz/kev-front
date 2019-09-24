@@ -77,7 +77,7 @@ export default (state, action) => {
         ...state,
         error: action.payload,
       };
-    // TODO: Add other action types
+    // TODO: Add reducer option for toggling device and setting the status
     default:
       return state;
   }
