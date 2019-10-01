@@ -14,7 +14,14 @@ import {
   LOGOUT,
   CLEAR_ERRORS,
 } from '../types';
-import { async } from 'q';
+
+let apiUrl;
+
+if (process.env.NODE_ENV !== 'production') {
+  apiUrl = process.env.REACT_APP_API_URL;
+} else {
+  apiUrl = process.env.API_URL;
+}
 
 const AuthState = props => {
   // Added a "current" key to the state object, so that when we click edit,
@@ -37,7 +44,7 @@ const AuthState = props => {
     }
 
     try {
-      const res = await axios.get(`${process.env.REACT_APP_API_URL}/api/auth`);
+      const res = await axios.get(`${apiUrl}/api/auth`);
 
       dispatch({
         type: USER_LOADED,
@@ -59,11 +66,7 @@ const AuthState = props => {
     try {
       // We defined the proxy on package.json, so we can access our api as
       // /api/users
-      const res = await axios.post(
-        `${process.env.REACT_APP_API_URL}/api/users`,
-        formData,
-        config
-      );
+      const res = await axios.post(`${apiUrl}/api/users`, formData, config);
       //
       // The payload will be the token (res.data)
       dispatch({
@@ -91,11 +94,7 @@ const AuthState = props => {
     try {
       // We defined the proxy on package.json, so we can access our api as
       // /api/users
-      const res = await axios.post(
-        `${process.env.REACT_APP_API_URL}/api/auth`,
-        formData,
-        config
-      );
+      const res = await axios.post(`${apiUrl}/api/auth`, formData, config);
       //
       // The payload will be the token (res.data)
       dispatch({
