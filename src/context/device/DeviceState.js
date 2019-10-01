@@ -16,6 +16,14 @@ import {
   TOGGLE_DEVICE,
 } from '../types';
 
+let apiUrl;
+
+if (process.env.NODE_ENV !== 'production') {
+  apiUrl = process.env.REACT_APP_API_URL;
+} else {
+  apiUrl = process.env.API_URL;
+}
+
 const DeviceState = props => {
   // Added a "current" key to the state object, so that when we click edit,
   // whatever contact we clicked edit for, to be put into this piece of state,
@@ -33,9 +41,7 @@ const DeviceState = props => {
   // Add devices
   const getDevices = async () => {
     try {
-      const res = await axios.get(
-        `${process.env.REACT_APP_API_URL}/api/devices`
-      );
+      const res = await axios.get(`${apiUrl}/api/devices`);
       dispatch({
         type: GET_DEVICES,
         payload: res.data,
@@ -57,11 +63,7 @@ const DeviceState = props => {
       },
     };
     try {
-      const res = await axios.post(
-        `${process.env.REACT_APP_API_URL}/api/devices`,
-        device,
-        config
-      );
+      const res = await axios.post(`${apiUrl}/api/devices`, device, config);
       dispatch({
         type: ADD_DEVICE,
         payload: res.data,
@@ -77,7 +79,7 @@ const DeviceState = props => {
   // Delete Contact
   const deleteDevice = async id => {
     try {
-      await axios.delete(`${process.env.REACT_APP_API_URL}/api/devices/${id}`);
+      await axios.delete(`${apiUrl}/api/devices/${id}`);
     } catch (err) {
       dispatch({
         type: DEVICE_ERROR,
@@ -99,7 +101,7 @@ const DeviceState = props => {
     };
     try {
       const res = await axios.put(
-        `${process.env.REACT_APP_API_URL}/api/devices/${device._id}`,
+        `${apiUrl}/api/devices/${device._id}`,
         device,
         config
       );
@@ -123,8 +125,8 @@ const DeviceState = props => {
       },
     };
     try {
-      const res = await axios.patch(
-        `${process.env.REACT_APP_API_URL}/api/deviceController/toggleDevice`,
+      const res = await axios.post(
+        `${apiUrl}/api/deviceController/toggleDevice`,
         { serialNumber },
         config
       );

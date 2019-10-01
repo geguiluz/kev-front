@@ -56,7 +56,7 @@ Navbar.propTypes = {
 };
 
 Navbar.defaultProps = {
-  title: 'Device Keeper',
-  icon: 'fas fa-id-card-alt',
+  title: 'KEV 1.0',
+  icon: 'fas fa-bolt',
 };
 export default Navbar;
