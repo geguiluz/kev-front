@@ -127,7 +127,7 @@ const DeviceState = props => {
     };
     try {
       const res = await axios.post(
-        `${apiUrl}/api/deviceController/toggleDevice`,
+        `${apiUrl}/api/telematics/toggleDevice`,
         { serialNumber },
         config
       );
