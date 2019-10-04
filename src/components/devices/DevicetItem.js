@@ -35,7 +35,7 @@ const DeviceItem = ({ device }) => {
         {name}{' '}
         <span style={{ float: 'right' }}>
           <h6>
-            <Badge text={'OFF'} status={'error'} />
+            <Badge text={'OK'} status={'success'} />
           </h6>
         </span>
       </h3>
