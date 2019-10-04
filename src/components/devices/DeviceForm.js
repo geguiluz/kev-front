@@ -1,4 +1,9 @@
 import React, { useState, useContext, useEffect } from 'react';
+
+import { Input, Button, Icon, Tooltip, Form, Radio } from 'antd';
+
+import 'antd/dist/antd.css';
+
 import DeviceContext from '../../context/device/deviceContext';
 
 const DeviceForm = () => {
@@ -64,60 +69,61 @@ const DeviceForm = () => {
   };
 
   return (
-    <form onSubmit={onSubmit}>
+    <Form onSubmit={onSubmit}>
       <h2 className='text-primary'>
         {current ? 'Update Device' : 'Add Device'}
       </h2>
-      <input
+      <Input
         type='text'
         placeholder='Name'
         name='name'
+        allowClear
+        prefix={<Icon type='tag' style={{ color: 'rgba(0,0,0,.25)' }} />}
         value={name}
         onChange={onChange}
       />
-      <input
+      <Input
         type='text'
         placeholder='Serial Number'
         name='serialNumber'
+        allowClear
+        prefix={<Icon type='setting' style={{ color: 'rgba(0,0,0,.25)' }} />}
         value={serialNumber}
         onChange={onChange}
       />
-      <input
-        type='text'
-        placeholder='Device Type'
+      <Radio.Group
+        defaultValue='Sonoff V1'
         name='type'
+        placeholder='Device Type'
         value={type}
         onChange={onChange}
-      />
-      <input
+      >
+        <Radio value='Sonoff V1'>Sonoff V1</Radio>
+        <Radio value='Sonoff V2'>Sonoff V2</Radio>
+      </Radio.Group>
+
+      <Input
         type='text'
         placeholder='MAC Address'
         name='macAddress'
+        allowClear
         value={macAddress}
         onChange={onChange}
       />
-      Disable Device?{' '}
-      <input
-        type='checkbox'
-        name='isDisabled'
-        value={isDisabled}
-        onChange={onChange}
-      />
+
       <div>
-        <input
-          type='submit'
-          value={current ? 'Update  Device' : 'Add Device'}
-          className='btn btn-primary btn-block'
-        />
+        <Button type='primary' block onClick={onSubmit}>
+          {current ? 'Update Device' : 'Add Device'}
+        </Button>
       </div>
       {current && (
         <div>
-          <button className='btn btn-light btn-block' onClick={clearAll}>
+          <Button block onClick={clearAll}>
             Clear
-          </button>
+          </Button>
         </div>
       )}
-    </form>
+    </Form>
   );
 };
 
