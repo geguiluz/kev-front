@@ -302,6 +302,17 @@ input {
   margin: 1.2rem 0;
 }
 
+.ant-input,
+.ant-btn,
+.ant-radio-group {
+  margin: 0 10px 10px 0;
+}
+
+.ant-input-prefix,
+.ant-input-suffix {
+  top: 40%;
+}
+
 .form-text {
   display: block;
   margin-top: 0.3rem;
