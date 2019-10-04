@@ -1,6 +1,7 @@
 import React, { Fragment, useContext } from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
+import { Drawer, Button, Icon } from 'antd';
 import AuthContext from '../../context/auth/authContext';
 import DeviceContext from '../../context/device/deviceContext';
 
@@ -42,6 +43,9 @@ const Navbar = ({ title, icon }) => {
   return (
     <div className='navbar bg-primary'>
       <h1>
+        {/* <Button>
+          <Icon type='menu' />
+        </Button> */}
         <i className={icon} />
         {title}
       </h1>
@@ -56,7 +60,7 @@ Navbar.propTypes = {
 };
 
 Navbar.defaultProps = {
-  title: 'KEV 1.0',
+  title: 'KEV 2.0',
   icon: 'fas fa-bolt',
 };
 export default Navbar;

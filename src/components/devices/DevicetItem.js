@@ -1,4 +1,7 @@
 import React, { useContext } from 'react';
+
+import { Button, Icon, Row, Tooltip, Badge } from 'antd';
+
 import PropTypes from 'prop-types';
 import DeviceContext from '../../context/device/deviceContext';
 
@@ -11,7 +14,7 @@ const DeviceItem = ({ device }) => {
     toggleDevice,
   } = deviceContext;
 
-  const { _id, serialNumber, name, macAddress, isDisabled, type } = device;
+  const { _id, serialNumber, name, macAddress, deviceStatus, type } = device;
 
   // Let's pull out the delete action from our context
 
@@ -28,48 +31,53 @@ const DeviceItem = ({ device }) => {
   return (
     <div className='card bg-light'>
       <h3 className='text-primary text-left'>
+        <Icon type='tag' theme='filled' style={{ color: 'rgba(0,0,0,.65)' }} />
         {name}{' '}
-        <span
-          style={{ float: 'right' }}
-          className={'badge ' + (isDisabled ? 'badge-danger' : 'badge-success')}
-        >
-          {isDisabled ? 'Disabled' : 'Enabled'}
+        <span style={{ float: 'right' }}>
+          <h6>
+            <Badge text={'OFF'} status={'error'} />
+          </h6>
         </span>
       </h3>
       <ul className='list'>
         {serialNumber && (
           <li>
-            <i className='fas fa-tag' />
+            <Icon type='setting' style={{ color: 'rgba(0,0,0,.65)' }} />
             {serialNumber}
           </li>
         )}
         {type && (
           <li>
-            <i className='fas fa-asterisk' />
-            {type}
+            <Icon type='bulb' style={{ color: 'rgba(0,0,0,.65)' }} /> {type}
           </li>
         )}
-        {macAddress && (
-          <li>
-            <i className='fas fa-podcast' />
-            {macAddress}
-          </li>
-        )}
+        {macAddress && <li>MAC: {macAddress}</li>}
       </ul>
-      <p>
-        <button
-          className='btn btn-dark btn-sm'
-          onClick={() => setCurrent(device)}
-        >
-          Edit
-        </button>
-        <button className='btn btn-danger btn-sm' onClick={onDelete}>
-          Delete
-        </button>
-        <button className='btn btn-primary btn-sm' onClick={onToggle}>
-          Toggle
-        </button>
-      </p>
+      <Row type='flex' style={{ alignItems: 'center' }}>
+        <Tooltip trigger='hover' title='Edit device' placement='bottom'>
+          <Button
+            onClick={() => setCurrent(device)}
+            icon='edit'
+            size='large'
+          ></Button>
+        </Tooltip>
+        <Tooltip trigger='hover' title='Delete device' placement='bottom'>
+          <Button
+            type='danger'
+            icon='delete'
+            onClick={onDelete}
+            size='large'
+          ></Button>
+        </Tooltip>
+        <Tooltip trigger='hover' title='Toggle power on/off' placement='bottom'>
+          <Button
+            type='primary'
+            icon='poweroff'
+            size='large'
+            onClick={onToggle}
+          ></Button>
+        </Tooltip>
+      </Row>
     </div>
   );
 };
