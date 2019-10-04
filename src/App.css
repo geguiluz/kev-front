@@ -2,7 +2,7 @@
 
 /* Global Styles */
 :root {
-  --primary-color: #006064;
+  --primary-color: #434343;
   --dark-color: #434343;
   --light-color: #e8e8e8;
   --danger-color: #9f0200;
@@ -17,8 +17,8 @@
 
 body {
   font-family: 'Roboto', sans-serif;
-  font-size: 1rem;
-  line-height: 1.6;
+  font-size: 0.9rem;
+  line-height: 1.2;
   background-color: #fff;
   color: #333;
 }
@@ -42,6 +42,10 @@ img {
 
 i {
   margin-right: 10px;
+}
+
+.ant-btn > i {
+  margin-right: 0;
 }
 
 /* Utilities */
@@ -305,13 +309,20 @@ input {
 .ant-input,
 .ant-btn,
 .ant-radio-group {
-  margin: 0 10px 10px 0;
+  margin: 5px 10px 5px 5px;
 }
 
-.ant-input-prefix,
-.ant-input-suffix {
-  top: 40%;
+.navbar > h1 > .ant-btn {
+  align-items: center;
+  line-height: 0;
+  margin: 0 15 0 0;
+  top: -7px;
 }
+
+/* .ant-input-affix-wrapper .ant-input-prefix,
+.ant-input-affix-wrapper .ant-input-suffix {
+  top: 40%;
+} */
 
 /* .form-text {
   display: block;
@@ -377,17 +388,27 @@ table th {
   padding: 0.7rem 2rem;
   z-index: 1;
   width: 100%;
-  border-bottom: solid 1px var(--primary-color);
-  opacity: 0.9;
-  margin-bottom: 1rem;
+  /* border-bottom: solid 1px var(--primary-color); */
+  /* opacity: 0.9;
+  margin-bottom: 1rem; */
+  box-shadow: 0 4px 12px 0 rgba(0, 0, 0, 0.3);
+  background: white;
+  font-size: 1rem;
 }
 
 .navbar ul {
   display: flex;
+  color: var(--dark-color);
+  margin-bottom: 0;
+}
+
+.navbar h1 {
+  color: var(--dark-color);
+  margin-bottom: 0;
 }
 
 .navbar a {
-  color: #fff;
+  color: var(--dark-color);
   padding: 0.45rem;
   margin: 0 0.25rem;
 }
@@ -448,11 +469,12 @@ table th {
   }
 
   .navbar h1 {
-    margin-bottom: 0.6rem;
+    /* margin-bottom: 0.6rem; */
   }
 
   .navbar ul {
     text-align: center;
     justify-content: center;
+    margin-bottom: 0;
   }
 }
