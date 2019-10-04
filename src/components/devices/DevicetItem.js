@@ -1,4 +1,7 @@
 import React, { useContext } from 'react';
+
+import { Button, Icon, Row } from 'antd';
+
 import PropTypes from 'prop-types';
 import DeviceContext from '../../context/device/deviceContext';
 
@@ -28,6 +31,7 @@ const DeviceItem = ({ device }) => {
   return (
     <div className='card bg-light'>
       <h3 className='text-primary text-left'>
+        <Icon type='tag' theme='filled' style={{ color: 'rgba(0,0,0,.65)' }} />
         {name}{' '}
         <span
           style={{ float: 'right' }}
@@ -39,37 +43,26 @@ const DeviceItem = ({ device }) => {
       <ul className='list'>
         {serialNumber && (
           <li>
-            <i className='fas fa-tag' />
+            <Icon type='setting' style={{ color: 'rgba(0,0,0,.65)' }} />
             {serialNumber}
           </li>
         )}
         {type && (
           <li>
-            <i className='fas fa-asterisk' />
-            {type}
+            <Icon type='bulb' style={{ color: 'rgba(0,0,0,.65)' }} /> {type}
           </li>
         )}
-        {macAddress && (
-          <li>
-            <i className='fas fa-podcast' />
-            {macAddress}
-          </li>
-        )}
+        {macAddress && <li>MAC: {macAddress}</li>}
       </ul>
-      <p>
-        <button
-          className='btn btn-dark btn-sm'
-          onClick={() => setCurrent(device)}
-        >
-          Edit
-        </button>
-        <button className='btn btn-danger btn-sm' onClick={onDelete}>
+      <Row type='flex' style={{ alignItems: 'center' }}>
+        <Button onClick={() => setCurrent(device)}>Edit</Button>
+        <Button type='danger' onClick={onDelete}>
           Delete
-        </button>
-        <button className='btn btn-primary btn-sm' onClick={onToggle}>
+        </Button>
+        <Button type='primary' icon='poweroff' onClick={onToggle}>
           Toggle
-        </button>
-      </p>
+        </Button>
+      </Row>
     </div>
   );
 };

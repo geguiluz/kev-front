@@ -30,6 +30,7 @@ const DeviceFilter = () => {
   };
 
   return (
+    // TODO: Fix the search using "ref". It only works on regular input
     <Form>
       <Search
         type='text'

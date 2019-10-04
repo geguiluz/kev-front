@@ -1,4 +1,8 @@
 import React, { useState, useEffect, useContext } from 'react';
+import { Link } from 'react-router-dom';
+
+import { Input, Button, Icon, Tooltip, Form } from 'antd';
+
 import AlertContext from '../../context/alert/alertContext';
 import AuthContext from '../../context/auth/authContext';
 
@@ -46,33 +50,38 @@ const Login = props => {
       <h1>
         Account <span className='text-primary'>Register</span>
       </h1>
-      <form onSubmit={onSubmit}>
+      <Form onSubmit={onSubmit}>
         <div className='form-group'>
-          <label htmlFor='email'>Email Address</label>
-          <input
+          <Input
             type='email'
             name='email'
+            placeholder='Email Address'
             value={email}
             onChange={onChange}
+            onPressEnter={onSubmit}
             required
           />
-        </div>
-        <div className='form-group'>
-          <label htmlFor='password'>Password</label>
-          <input
+
+          <Input
             type='password'
             name='password'
+            placeholder='Password'
             value={password}
             onChange={onChange}
+            onPressEnter={onSubmit}
             required
           />
         </div>
-        <input
-          type='submit'
-          value='Login'
-          className='btn btn-primary btn-block'
-        />
-      </form>
+        <Button value='Login' type='primary' block onClick={onSubmit}>
+          Login
+        </Button>
+        Not registered yet?
+        <Link to='/register'>
+          <Button value='Register' type='link'>
+            Register
+          </Button>
+        </Link>
+      </Form>
     </div>
   );
 };
