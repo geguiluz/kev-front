@@ -337,7 +337,8 @@ button {
   font: inherit;
 } */
 
-.form-group {
+.form-group,
+.ant-form {
   margin: 1.2rem 0;
 }
 

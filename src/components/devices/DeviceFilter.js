@@ -1,5 +1,12 @@
 import React, { useContext, useRef, useEffect } from 'react';
+
+import { Input, Form, Icon } from 'antd';
+
+import 'antd/dist/antd.css';
+
 import DeviceContext from '../../context/device/deviceContext';
+
+const { Search } = Input;
 
 const DeviceFilter = () => {
   const deviceContext = useContext(DeviceContext);
@@ -23,14 +30,15 @@ const DeviceFilter = () => {
   };
 
   return (
-    <form>
-      <input
+    <Form>
+      <Search
         type='text'
         ref={text}
         placeholder='Filter Devices...'
+        enterButton
         onChange={onChange}
       />
-    </form>
+    </Form>
   );
 };
 export default DeviceFilter;
