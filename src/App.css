@@ -313,7 +313,7 @@ input {
   top: 40%;
 }
 
-.form-text {
+/* .form-text {
   display: block;
   margin-top: 0.3rem;
   color: #888;
@@ -330,12 +330,12 @@ textarea {
   padding: 0.4rem;
   font-size: 1.2rem;
   border: 1px solid #ccc;
-}
+} */
 
-input[type='submit'],
+/* input[type='submit'],
 button {
   font: inherit;
-}
+} */
 
 .form-group {
   margin: 1.2rem 0;
