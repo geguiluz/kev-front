@@ -25,7 +25,7 @@ const DeviceItem = ({ device }) => {
 
   const onToggle = () => {
     console.log('Toggle fired on ', serialNumber);
-    toggleDevice(serialNumber);
+    toggleDevice(_id, serialNumber);
   };
 
   return (
@@ -35,7 +35,10 @@ const DeviceItem = ({ device }) => {
         {name}{' '}
         <span style={{ float: 'right' }}>
           <h6>
-            <Badge text={'OK'} status={'success'} />
+            <Badge
+              text={deviceStatus}
+              status={deviceStatus === 'ON' ? 'success' : 'error'}
+            />
           </h6>
         </span>
       </h3>
