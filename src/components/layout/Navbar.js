@@ -43,10 +43,9 @@ const Navbar = ({ title, icon }) => {
   return (
     <div className='navbar bg-primary'>
       <h1>
-        <Button>
+        {/* <Button>
           <Icon type='menu' />
-        </Button>
-        {'  '}
+        </Button> */}
         <i className={icon} />
         {title}
       </h1>
@@ -61,7 +60,7 @@ Navbar.propTypes = {
 };
 
 Navbar.defaultProps = {
-  title: 'KEV 1.0',
+  title: 'KEV 2.0',
   icon: 'fas fa-bolt',
 };
 export default Navbar;
