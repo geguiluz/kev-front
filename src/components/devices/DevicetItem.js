@@ -34,12 +34,14 @@ const DeviceItem = ({ device }) => {
         <Icon type='tag' theme='filled' style={{ color: 'rgba(0,0,0,.65)' }} />
         {name}{' '}
         <span style={{ float: 'right' }}>
-          <h6>
-            <Badge
-              text={deviceStatus}
-              status={deviceStatus === 'ON' ? 'success' : 'error'}
-            />
-          </h6>
+          {deviceStatus && (
+            <h6>
+              <Badge
+                text={deviceStatus}
+                status={deviceStatus === 'ON' ? 'success' : 'error'}
+              />
+            </h6>
+          )}
         </span>
       </h3>
       <ul className='list'>
