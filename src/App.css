@@ -2,8 +2,9 @@
 
 /* Global Styles */
 :root {
-  --primary-color: #434343;
+  --primary-color: #6d87ad;
   --dark-color: #6d87ad;
+  --medium-color: #cddcf1;
   --light-color: #f4f4f4;
   --danger-color: #9f0200;
   --success-color: #5bbb53;
@@ -103,6 +104,10 @@ i {
   padding: 1rem;
   border: #ccc 1px dotted;
   margin: 0.7rem 0;
+}
+
+.card:hover {
+  background: var(--medium-color);
 }
 
 /* List */
