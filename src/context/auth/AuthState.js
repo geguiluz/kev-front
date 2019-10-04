@@ -20,7 +20,8 @@ let apiUrl;
 if (process.env.NODE_ENV !== 'production') {
   apiUrl = process.env.REACT_APP_API_URL;
 } else {
-  apiUrl = process.env.API_URL;
+  // apiUrl = process.env.API_URL;
+  apiUrl = 'https://kev-back.herokuapp.com';
 }
 
 const AuthState = props => {

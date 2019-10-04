@@ -96,7 +96,6 @@ const DeviceForm = () => {
         value={macAddress}
         onChange={onChange}
       />
-      <h5>Device Type</h5>
       Disable Device?{' '}
       <input
         type='checkbox'
