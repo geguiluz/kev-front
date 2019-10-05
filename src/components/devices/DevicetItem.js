@@ -1,6 +1,6 @@
 import React, { useContext } from 'react';
 
-import { Button, Icon, Row, Tooltip, Badge } from 'antd';
+import { Button, Icon, Row, Tooltip, Tag } from 'antd';
 
 import PropTypes from 'prop-types';
 import DeviceContext from '../../context/device/deviceContext';
@@ -36,10 +36,9 @@ const DeviceItem = ({ device }) => {
         <span style={{ float: 'right' }}>
           {deviceStatus && (
             <h6>
-              <Badge
-                text={deviceStatus}
-                status={deviceStatus === 'ON' ? 'success' : 'error'}
-              />
+              <Tag color={deviceStatus === 'ON' ? 'green' : 'red'}>
+                {deviceStatus}
+              </Tag>
             </h6>
           )}
         </span>
