@@ -1,6 +1,6 @@
 import React, { useContext } from 'react';
 
-import { Button, Icon, Row, Tooltip, Badge } from 'antd';
+import { Button, Icon, Row, Tooltip, Tag } from 'antd';
 
 import PropTypes from 'prop-types';
 import DeviceContext from '../../context/device/deviceContext';
@@ -25,7 +25,7 @@ const DeviceItem = ({ device }) => {
 
   const onToggle = () => {
     console.log('Toggle fired on ', serialNumber);
-    toggleDevice(serialNumber);
+    toggleDevice(_id, serialNumber);
   };
 
   return (
@@ -34,9 +34,13 @@ const DeviceItem = ({ device }) => {
         <Icon type='tag' theme='filled' style={{ color: 'rgba(0,0,0,.65)' }} />
         {name}{' '}
         <span style={{ float: 'right' }}>
-          <h6>
-            <Badge text={'OK'} status={'success'} />
-          </h6>
+          {deviceStatus && (
+            <h6>
+              <Tag color={deviceStatus === 'ON' ? 'green' : 'red'}>
+                {deviceStatus}
+              </Tag>
+            </h6>
+          )}
         </span>
       </h3>
       <ul className='list'>
