@@ -34,6 +34,7 @@ const DeviceState = props => {
     current: null,
     filtered: null,
     error: null,
+    deviceStatus: '?',
   };
 
   const [state, dispatch] = useReducer(deviceReducer, initialState);
@@ -119,7 +120,7 @@ const DeviceState = props => {
   };
 
   // Toggle device
-  const toggleDevice = async serialNumber => {
+  const toggleDevice = async (_id, serialNumber) => {
     const config = {
       headers: {
         'Content-type': 'application/json',
@@ -128,7 +129,7 @@ const DeviceState = props => {
     try {
       const res = await axios.post(
         `${apiUrl}/api/telematics/toggleDevice`,
-        { serialNumber },
+        { _id, serialNumber },
         config
       );
       dispatch({

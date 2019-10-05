@@ -10,6 +10,7 @@ import {
   CLEAR_CURRENT,
   CLEAR_FILTER,
   FILTER_DEVICE,
+  TOGGLE_DEVICE,
 } from '../types';
 
 export default (state, action) => {
@@ -24,6 +25,20 @@ export default (state, action) => {
       return {
         ...state,
         devices: [action.payload, ...state.devices],
+        loading: false,
+      };
+    case TOGGLE_DEVICE:
+      return {
+        ...state,
+        devices: state.devices.map(device => {
+          if (device._id === action.payload._id) {
+            let { name, macAddress, type } = device;
+            let { _id, deviceStatus, serialNumber } = action.payload;
+            return { _id, serialNumber, name, macAddress, type, deviceStatus };
+          } else {
+            return device;
+          }
+        }),
         loading: false,
       };
     case UPDATE_DEVICE:
@@ -77,7 +92,7 @@ export default (state, action) => {
         ...state,
         error: action.payload,
       };
-    // TODO: Add reducer option for toggling device and setting the status
+    // TODO: Add other action types
     default:
       return state;
   }
