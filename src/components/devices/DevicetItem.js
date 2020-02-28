@@ -12,6 +12,7 @@ const DeviceItem = ({ device }) => {
     setCurrent,
     clearCurrent,
     toggleDevice,
+    updateDevice,
   } = deviceContext;
 
   const { _id, serialNumber, name, macAddress, deviceStatus, type } = device;

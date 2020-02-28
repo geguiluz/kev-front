@@ -1,5 +1,7 @@
 import React, { useReducer } from 'react';
 import axios from 'axios';
+import mqtt from 'async-mqtt';
+
 import DeviceContext from './deviceContext';
 import deviceReducer from './deviceReducer';
 import {
@@ -94,28 +96,46 @@ const DeviceState = props => {
     });
   };
 
-  // Update device
-  const updateDevice = async device => {
-    const config = {
-      headers: {
-        'Content-type': 'application/json',
-      },
-    };
+  // Update device <----- I think this function is not working yet
+  const updateDevice = async (_id, serialNumber) => {
     try {
-      const res = await axios.put(
-        `${apiUrl}/api/devices/${device._id}`,
-        device,
-        config
+      // Start mqtt client
+      // Subscribe to topic
+      // Wait for message
+      console.log(
+        'Attempting MQTT Connection with',
+        `${process.env.REACT_APP_API_MQTT_URL}:${process.env.REACT_APP_API_MQTT_PORT}`
       );
-      dispatch({
-        type: UPDATE_DEVICE,
-        payload: res.data,
+
+      const client = mqtt.connect(
+        `${process.env.REACT_APP_API_MQTT_URL}:${process.env.REACT_APP_API_MQTT_PORT}`,
+        {
+          username: process.env.REACT_APP_API_MQTT_USER,
+          password: process.env.REACT_APP_API_MQTT_PASSWORD,
+        }
+      );
+      const subTopic = `stat/${serialNumber}_fb/POWER`;
+      client.on('connect', async () => {
+        console.log('Connection established');
+        console.log('Client connected', client);
+        await client.subscribe(subTopic);
+        console.log('Subscribed to topic ', subTopic);
+      });
+      client.on('message', async (topic, payload) => {
+        if (topic === subTopic) {
+          console.log('Matching topic');
+          // dispatch({
+          //   type: UPDATE_DEVICE,
+          //   payload: payload.toString,
+          // });
+        }
       });
     } catch (err) {
-      dispatch({
-        type: DEVICE_ERROR,
-        payload: err.response.msg,
-      });
+      console.log('Error');
+      // dispatch({
+      //   type: DEVICE_ERROR,
+      //   payload: err.response.msg,
+      // });
     }
   };
 
